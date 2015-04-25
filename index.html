@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Graphic</title>
+
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <!--JS LIBRARIES-->
+    <!--JQUERY-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!--BOOTSTRAP JS-->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--MODERNIZR-->
+    <script src ="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js" type="text/javascript" ></script>
+    <!-- chart.js
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script> -->
+
+    <script src="js/Chart.min.js"></script>
+    <script src="js/legend.js"></script>
+    <!--END JS-->
+ 
+    <!--BOOTSTRAP CSS-->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- BS extra breakdown -->
+    <link href="css/bootstrap_ms.css" rel="stylesheet">
+    
+
+    <!--CSS-->
+
+
+    <style type="text/css">
+        /* base dailygraphics styles */
+        html { -webkit-text-size-adjust: none; }
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px/1.4 Arial, Helvetica, sans-serif;
+            color: black;
+        }
+        h1 {
+            margin: 0 0 6px 0;
+            font-size: 20px;
+            color: black;
+        }
+        h2 {
+            font-weight: normal;
+            color: #666;
+            font-size: 14px;
+            margin: 0 0 22px 0;
+        }
+        .footnotes { margin-bottom: 20px; }
+        .footnotes h4 {
+            margin: 2px 0 7px 0;
+            color: #666;
+            font-size: 11px;
+        }
+        .footnotes p,
+        .footer p {
+            margin: 2px 0 0 0;
+            font-size: 11px;
+            line-height: 1.3;
+            color: #808080;
+        }
+        a, a:link, a:visited {
+            color: #4774CC;
+            text-decoration: none;
+        }
+        a:hover, a:active { opacity: 0.7; }
+    </style>
+
+
+    <!-- chart.js stuff -->
+    <style>
+
+    canvas {
+        width: 100% !important;
+        max-width: 800px;
+        height: auto !important;
+    }
+
+    .legend {
+        width: 12em;
+        border: 0px solid black;
+    }
+
+    .legend .title {
+        display: block;
+        margin-bottom: 0.5em;
+        line-height: 1.2em;
+        padding: 0 0.3em;
+    }
+
+    .legend .color-sample {
+        display: block;
+        float: left;
+        width: 1em;
+        height: 1em;
+        /*border: 2px solid; /* Comment out if you don't want to show the fillColor */
+        border-radius: 0.5em; /* Comment out if you prefer squarish samples */
+        margin-right: 0.5em;
+    }
+
+    #legend{
+        position: relative;
+        top: 2em;
+        right: 4em;
+    }
+
+    @media (max-width: 500px) {
+        #legend{
+        }
+    }
+
+    #graphic{
+        position: relative;
+        top: 1em;
+        right: 1em;
+    }
+
+    canvas {
+        margin-bottom: 20px;
+    }
+
+    </style>
+
+
+</head>
+<body>
+    
+    <div class="row-fluid">
+        
+        <div class="col-xs-12">
+            <h1>How are Bridges Rated?</h1>
+        </div>
+
+        <!-- <div class="col-ms-4"> -->
+        <div class="col-xs-12">
+            <p class="text-justify">The "Sufficiency Rating" is a number score from 1 to 100 which indicates a bridge’s sufficiency to remain in service. The score is a result of a formula which takes into account the bridge’s structure, its design and importance to the public.</p>
+        </div>
+
+        <!-- GRAPHIC -->
+        <div class="col-xs-8">
+            <canvas id="graphic" height="175"></canvas>
+        </div>
+        <div class="col-xs-4">
+            <div id="legend"></div>
+        </div>
+
+
+
+    <div class="col-xs-12">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+                <div class="panel-heading" style="background-color:#3D7FA6" role="tab" id="headingOne">
+                <h4 class="panel-title" >
+                    <a data-toggle="collapse" style="color:black" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Structural Adequacy and Safety</a>
+                </h4>
+            </div>
+
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">This category rates the structural and safety elements, including its piers or columns. It also rates the load capacity of the bridge.
+          </div>
+        </div>
+
+        </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#A23520" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color:black" aria-expanded="false" aria-controls="collapseTwo">
+          Serviceablity and Functional Obsolensence
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        This category rates aspects such as the driving surface of the bridge, the average daily traffic, and the bridge's width and clearance underneath.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#17807E" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color:black"aria-expanded="false" aria-controls="collapseThree">
+          Essentiality for Public Use
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        This category rates aspects of the bridge related to its usefulness. It takes into account the distance it might save drivers and the daily traffic it experiences.
+      </div>
+    </div>
+  </div> 
+
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color:gray" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color:black"aria-expanded="false" aria-controls="collapseThree">
+          Special Reductions
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        A maximum of 13% can be taken off of the total only if the rating is already above 50. These rating penalties take into account the material the bridge is made out of and traffic safety features the bridge may or may not have.
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="row-fluid">
+    <div class="footer col-xs-12">
+        <p>Source: Federal Highway Administration</a></p>
+        <p>Credit: <a href="http://www.twitter.com/scottpham">Scott Pham</a>/NBC Bay Area</p>
+    </div>
+</div>
+    <script src="js/pie.js" type="text/javascript"></script>
+</body>
+</html>
